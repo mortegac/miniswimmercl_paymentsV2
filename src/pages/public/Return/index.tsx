@@ -578,7 +578,7 @@ useEffect(() => {
                     <div className="flex flex-col justify-center items-center mt-8 space-y-4">
                         <div className="w-16 h-16">
                             <LoadingIcon
-                                color="#AE5EAB"
+                                color="#7E4996"
                                 icon="oval"
                                 className="w-10 h-10 mt-10"
                             />
@@ -603,7 +603,7 @@ useEffect(() => {
                 <div className="flex flex-col justify-center items-center mt-8 space-y-4">
                         <div className="w-16 h-16">
                             <LoadingIcon
-                                color="#AE5EAB"
+                                color="#7E4996"
                                 icon="oval"
                                 className="w-10 h-10 mt-10"
                             />
@@ -624,7 +624,7 @@ useEffect(() => {
                     <div className="flex flex-col items-center justify-center mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg max-w-md mx-auto">
                         <div className="flex items-center justify-center mb-4">
                             <LoadingIcon
-                                color="#AE5EAB"
+                                color="#7E4996"
                                 icon="oval"
                                 className="w-8 h-8"
                             />

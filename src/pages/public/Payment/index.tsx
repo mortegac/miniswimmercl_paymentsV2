@@ -70,7 +70,7 @@ useEffect(() => {
           <div className="flex justify-center mt-8">
             <div className="w-16 h-16">
               <LoadingIcon
-                color="#AE5EAB"
+                color="#7E4996"
                 icon="oval"
                 className="w-10 h-10 mt-10"
               />

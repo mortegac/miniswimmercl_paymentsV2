@@ -73,9 +73,9 @@ module.exports = {
       addBase({
         // Default colors
         ":root": {
-          "--color-theme-1": toRGB("#944791"),
-          "--color-theme-2": toRGB("#AE5EAB"),
-          "--color-primary": toRGB("#AE5EAB"),
+          "--color-theme-1": toRGB("#6821A1"),
+          "--color-theme-2": toRGB("#5a089c"),
+          "--color-primary": toRGB("#7E4996"),
           "--color-secondary": toRGB(colors.slate["200"]),
           "--color-success": toRGB(colors.teal["600"]),
           "--color-info": toRGB(colors.cyan["600"]),
@@ -88,7 +88,7 @@ module.exports = {
         // Default dark-mode colors
         ".dark": {
           // "--color-primary": toRGB(colors.blue["700"]),
-          "--color-primary": toRGB("#AE5EAB"),
+          "--color-primary": toRGB("#7E4996"),
           "--color-darkmode-50": "87 103 132",
           "--color-darkmode-100": "74 90 121",
           "--color-darkmode-200": "65 81 114",
@@ -102,9 +102,9 @@ module.exports = {
         },
         // Theme 3 colors
         ".theme-3": {
-          "--color-theme-1": toRGB("#944791"),
-          "--color-theme-2": toRGB("#AE5EAB"),
-          "--color-primary": toRGB("#AE5EAB"),
+          "--color-theme-1": toRGB("#6821A1"),
+          "--color-theme-2": toRGB("#5a089c"),
+          "--color-primary": toRGB("#7E4996"),
           "--color-secondary": toRGB(colors.slate["200"]),
           "--color-success": toRGB(colors.teal["600"]),
           "--color-info": toRGB(colors.cyan["600"]),

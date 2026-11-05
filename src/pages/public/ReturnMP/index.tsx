@@ -68,7 +68,7 @@ function ReturnMP() {
           <Logo />
         </div>
         <div className="flex flex-col justify-center items-center box min-h-[600px] p-8 space-y-4 mt-8">
-          <LoadingIcon color="#AE5EAB" icon="oval" className="w-10 h-10" />
+          <LoadingIcon color="#7E4996" icon="oval" className="w-10 h-10" />
           <p className="text-xl text-center text-gray-700 dark:text-gray-300">{message}</p>
           <p className="text-xl text-center bg-primary text-white p-4 mt-40">
             Por favor no cierre el navegador
