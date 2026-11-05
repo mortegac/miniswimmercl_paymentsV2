@@ -1,11 +1,11 @@
 export const mpStartMutation = /* GraphQL */ `
-  mutation MercadopagoStart(
+  mutation V2MercadopagoStart(
     $amount: Float!
     $glosa: String!
     $userId: String!
-    $cartId: String
+    $cartId: String!
   ) {
-    mercadopagoStart(
+    v2MercadopagoStart(
       amount: $amount
       glosa: $glosa
       userId: $userId
@@ -19,18 +19,8 @@ export const mpStartMutation = /* GraphQL */ `
 `;
 
 export const mpStatusQuery = /* GraphQL */ `
-  query MercadopagoStatus(
-    $paymentId: String
-    $preferenceId: String
-    $externalReference: String
-    $mpStatus: String
-  ) {
-    mercadopagoStatus(
-      paymentId: $paymentId
-      preferenceId: $preferenceId
-      externalReference: $externalReference
-      mpStatus: $mpStatus
-    ) {
+  query V2MercadopagoStatus($paymentId: String!) {
+    v2MercadopagoStatus(paymentId: $paymentId) {
       paymentId
       status
       statusDetail

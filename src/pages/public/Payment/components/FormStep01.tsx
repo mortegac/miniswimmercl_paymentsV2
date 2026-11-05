@@ -9,13 +9,30 @@ import { NavigationBar } from "./NavigationBar";
 
 import { selectShoppingCart } from "@/stores/ShoppingCart/slice";
 import { selectWP, setWPStart } from "@/stores/WP/slice";
+import { selectMP, setMPStart } from "@/stores/MercadoPago/slice";
 import { useAppSelector, useAppDispatch } from "@/stores/hooks";
 
 export const FormStep01 = (props: any) => {
   const { email, cartID } = props;
   const { status, shoppingCart } = useAppSelector(selectShoppingCart);
   const { transaction } = useAppSelector(selectWP);
+  const { status: mpStatus } = useAppSelector(selectMP);
   const dispatch = useAppDispatch();
+
+  const handleMercadoPago = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const result: any = await dispatch(setMPStart({
+      amount: total,
+      userId: shoppingCart.usersShoppingCartId,
+      glosa: `Productos miniswimmer | ${shoppingCart?.id}`,
+      cartId: cartID,
+    }));
+    const pref = result?.payload;
+    const url = window.location.hostname === "localhost"
+      ? pref?.sandboxInitPoint || pref?.initPoint
+      : pref?.initPoint;
+    if (url) window.location.href = url;
+  };
   
   const cartDetails:any = shoppingCart?.cartDetails;
   const total =
@@ -95,6 +112,20 @@ export const FormStep01 = (props: any) => {
         )}
         
         <div className=" absolute bottom-1  h-32 w-[90%] mb-8">
+            <Button
+              type="button"
+              variant="outline-primary"
+              rounded
+              disabled={mpStatus === "loading" || !total}
+              onClick={handleMercadoPago}
+              className="w-full px-2 py-2 sm:py-3 text-sm sm:text-base mb-2"
+            >
+              {mpStatus === "loading" ? (
+                <LoadingIcon color="#7E4996" icon="three-dots" className="w-8 h-8" />
+              ) : (
+                <span>Pagar con Mercado Pago</span>
+              )}
+            </Button>
             <NavigationBar />
         </div>
       </form>

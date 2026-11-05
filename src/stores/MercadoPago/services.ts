@@ -14,18 +14,15 @@ export const mpStart = async (input: MercadoPagoInput): Promise<any> => {
       cartId: input.cartId,
     },
   });
-  return res?.data?.mercadopagoStart || {};
+  return res?.data?.v2MercadopagoStart || {};
 };
 
 export const mpStatus = async (input: MercadoPagoStatusInput): Promise<any> => {
   const res: any = await client.graphql({
     query: mpStatusQuery,
     variables: {
-      paymentId: input.paymentId || undefined,
-      preferenceId: input.preferenceId || undefined,
-      externalReference: input.externalReference || undefined,
-      mpStatus: input.mpStatus || undefined,
+      paymentId: input.paymentId,
     },
   });
-  return res?.data?.mercadopagoStatus || {};
+  return res?.data?.v2MercadopagoStatus || {};
 };
