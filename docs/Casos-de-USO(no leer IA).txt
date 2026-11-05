@@ -1,0 +1,12 @@
+
+
+http://localhost:5173/?pay=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc2MzA3NDMyNn0.gWHtnKq421Qz2XbexejsVa9pHNm-gStOUK_AlQEFIWE
+https://pagos.energica.city/ema/?pay=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc2MzA3NDMyNn0.gWHtnKq421Qz2XbexejsVa9pHNm-gStOUK_AlQEFIWE
+
+
+
+http://localhost:5173/return/?token_ws=113105199d3644af5cabc1e6bd94c153c703160a8539650e3b110123e8d2eaa2
+
+
+Abnulacion 
+http://localhost:5173/return/?TBK_TOKEN=11319fe2823b5fb66cea4a40fa2de98a76b3ef7c2947f48b02542385791ec195&TBK_ORDEN_COMPRA=11153&TBK_ID_SESION=bb014beb-2680-4fba-95d1-0119c97871fa

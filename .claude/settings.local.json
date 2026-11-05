@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(kill 52014)",
+      "Bash(python3 *)"
+    ]
+  },
+  "mcpServers": {
+    "mercadopago-local": {
+      "command": "node",
+      "args": [
+        "/Users/manu/tools/demo-mercadopago-mcp-server/build/index.js"
+      ],
+      "env": {
+        "CLIENT_ID": "YOUR_MERCADOPAGO_CLIENT_ID",
+        "CLIENT_SECRET": "YOUR_MERCADOPAGO_CLIENT_SECRET",
+        "DEBUG": "false"
+      }
+    }
+  }
+}
