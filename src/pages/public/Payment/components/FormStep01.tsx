@@ -5,7 +5,8 @@ import { HeaderTitle } from "./HeaderTitle";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import LoadingIcon from "@/components/Base/LoadingIcon";
-import { NavigationBar } from "./NavigationBar";
+import { WebpayLogo } from "./WebpayLogo";
+import { MercadoPagoLogo } from "./MercadoPagoLogo";
 
 import { selectShoppingCart } from "@/stores/ShoppingCart/slice";
 import { selectWP, setWPStart } from "@/stores/WP/slice";
@@ -15,7 +16,7 @@ import { useAppSelector, useAppDispatch } from "@/stores/hooks";
 export const FormStep01 = (props: any) => {
   const { email, cartID } = props;
   const { status, shoppingCart } = useAppSelector(selectShoppingCart);
-  const { transaction } = useAppSelector(selectWP);
+  const { transaction, status: wpStatus } = useAppSelector(selectWP);
   const { status: mpStatus } = useAppSelector(selectMP);
   const dispatch = useAppDispatch();
 
@@ -97,36 +98,45 @@ export const FormStep01 = (props: any) => {
               </div>
             </div>
           
-            <div className=" absolute bottom-6  h-32 w-[90%] mb-8 ">
-              
-              <div className="flex flex-col gap-3.5 ml-auto text-right min-w-full">
-                <div className="flex items-center justify-between mx-2">
-                  <div className="text-primary text-xl">Total a pagar:</div>
-                  <div className="font-medium text-primary text-xl">{`$${formatCurrency(total)}`}
-                </div>
-                </div>
+            <div className=" absolute bottom-36 h-10 w-[90%]">
+              <div className="flex items-center justify-between mx-2">
+                <div className="text-primary text-xl">Total a pagar:</div>
+                <div className="font-medium text-primary text-xl">{`$${formatCurrency(total)}`}</div>
               </div>
-              
             </div>
           </>
         )}
-        
-        <div className=" absolute bottom-1  h-32 w-[90%] mb-8">
-            <Button
+
+        {/* Selector de método de pago: MercadoPago (izquierda) | Webpay (derecha) */}
+        <div className=" absolute bottom-1 w-[90%] mb-8">
+          <p className="text-center text-slate-600 font-medium mb-3">Seleccione el método de pago</p>
+          <div className="flex items-stretch gap-3">
+            <button
               type="button"
-              variant="outline-primary"
-              rounded
+              aria-label="Pagar con Mercado Pago"
               disabled={mpStatus === "loading" || !total}
               onClick={handleMercadoPago}
-              className="w-full px-2 py-2 sm:py-3 text-sm sm:text-base mb-2"
+              className="flex-1 flex items-center justify-center border border-slate-200 rounded-xl py-3 bg-white hover:border-primary hover:shadow-md transition-all disabled:opacity-40"
             >
               {mpStatus === "loading" ? (
-                <LoadingIcon color="#7E4996" icon="three-dots" className="w-8 h-8" />
+                <LoadingIcon color="#009EE3" icon="three-dots" className="w-10 h-10" />
               ) : (
-                <span>Pagar con Mercado Pago</span>
+                <MercadoPagoLogo />
               )}
-            </Button>
-            <NavigationBar />
+            </button>
+            <button
+              type="submit"
+              aria-label="Pagar con Webpay"
+              disabled={!(transaction?.token && transaction?.token !== "")}
+              className="flex-1 flex items-center justify-center border border-slate-200 rounded-xl py-3 bg-white hover:border-primary hover:shadow-md transition-all disabled:opacity-40"
+            >
+              {wpStatus === "loading" ? (
+                <LoadingIcon color="#7E4996" icon="three-dots" className="w-10 h-10" />
+              ) : (
+                <WebpayLogo />
+              )}
+            </button>
+          </div>
         </div>
       </form>
     </>
