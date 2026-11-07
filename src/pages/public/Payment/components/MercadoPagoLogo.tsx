@@ -4,7 +4,7 @@ export function MercadoPagoLogo() {
     <img
       src="/mercado-pago-1.svg"
       alt="Mercado Pago"
-      width={140}
+      width={190}
       style={{ height: "auto" }}
     />
   );

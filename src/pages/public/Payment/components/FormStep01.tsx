@@ -20,6 +20,8 @@ export const FormStep01 = (props: any) => {
   const { status: mpStatus } = useAppSelector(selectMP);
   const dispatch = useAppDispatch();
 
+  const [mpError, setMpError] = useState("");
+
   const handleMercadoPago = async (e: React.MouseEvent) => {
     e.preventDefault();
     const result: any = await dispatch(setMPStart({
@@ -28,6 +30,19 @@ export const FormStep01 = (props: any) => {
       glosa: `Productos miniswimmer | ${shoppingCart?.id}`,
       cartId: cartID,
     }));
+
+    if (result?.meta?.requestStatus === "rejected") {
+      const msg: string = result?.error?.message || "";
+      if (msg.includes("MERCADOPAGO_SELF_PAYMENT")) {
+        setMpError(
+          "No es posible pagar con MercadoPago: tu email corresponde a la cuenta cobradora. Usa otra cuenta o paga con Webpay."
+        );
+      } else {
+        setMpError("No se pudo iniciar el pago con MercadoPago. Intenta nuevamente o usa Webpay.");
+      }
+      return;
+    }
+
     const pref = result?.payload;
     const url = window.location.hostname === "localhost"
       ? pref?.sandboxInitPoint || pref?.initPoint
@@ -110,13 +125,18 @@ export const FormStep01 = (props: any) => {
         {/* Selector de método de pago: MercadoPago (izquierda) | Webpay (derecha) */}
         <div className=" absolute bottom-1 w-[90%] mb-8">
           <p className="text-center text-slate-600 font-medium mb-3">Seleccione el método de pago</p>
+          {mpError && (
+            <p className="text-center text-red-500 text-sm mb-3 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+              {mpError}
+            </p>
+          )}
           <div className="flex items-stretch gap-3">
             <button
               type="button"
               aria-label="Pagar con Mercado Pago"
-              disabled={mpStatus === "loading" || !total}
+              disabled={mpStatus === "loading" || !total || !!mpError}
               onClick={handleMercadoPago}
-              className="flex-1 flex items-center justify-center border border-slate-200 rounded-xl py-3 bg-white hover:border-primary hover:shadow-md transition-all disabled:opacity-40"
+              className="flex-1 flex items-center justify-center border border-slate-200 rounded-xl py-0 bg-white hover:border-primary hover:shadow-md transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-slate-200 disabled:hover:shadow-none"
             >
               {mpStatus === "loading" ? (
                 <LoadingIcon color="#009EE3" icon="three-dots" className="w-10 h-10" />
@@ -128,7 +148,7 @@ export const FormStep01 = (props: any) => {
               type="submit"
               aria-label="Pagar con Webpay"
               disabled={!(transaction?.token && transaction?.token !== "")}
-              className="flex-1 flex items-center justify-center border border-slate-200 rounded-xl py-3 bg-white hover:border-primary hover:shadow-md transition-all disabled:opacity-40"
+              className="flex-1 flex items-center justify-center border border-slate-200 rounded-xl py-0 bg-white hover:border-primary hover:shadow-md transition-all disabled:opacity-40"
             >
               {wpStatus === "loading" ? (
                 <LoadingIcon color="#7E4996" icon="three-dots" className="w-10 h-10" />
